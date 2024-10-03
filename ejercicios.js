@@ -1412,3 +1412,784 @@ if (presion > 200 || temperatura > 100) {
 } else {
     console.log("Todo en orden");
 }
+
+
+//------------------------------ 51 Ejercicio--------------------//
+
+class Restaurante {
+    constructor(nombre) {
+        this.nombre = nombre;
+        this.pagos = [];
+    }
+
+    agregarPago(monto) {
+        let descuento = 0;
+        if (monto > 130000) {
+            descuento = monto * 0.15;
+        }
+        const pagoFinal = monto - descuento;
+        this.pagos.push(pagoFinal);
+        return pagoFinal;
+    }
+
+    calcularTotalPagos() {
+        return this.pagos.reduce((total, pago) => total + pago, 0);
+    }
+}
+
+function main() {
+    const miRestaurante = new Restaurante("La Delicia");
+    const montos = [100000, 150000, 80000, 200000, 120000];
+
+    console.log(`Bienvenido a ${miRestaurante.nombre}`);
+    console.log("Procesando pagos...");
+
+    for (let i = 0; i < montos.length; i++) {
+        const monto = montos[i];
+        const pagoFinal = miRestaurante.agregarPago(monto);
+        console.log(`Pago ${i + 1}: $${monto} - Pago final: $${pagoFinal}`);
+    }
+
+    const totalPagos = miRestaurante.calcularTotalPagos();
+    console.log(`Total de pagos recibidos: $${totalPagos}`);
+}
+
+main();
+
+
+//------------------------------ 52 Ejercicio--------------------//
+
+class Empleado {
+    constructor(nombre, tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
+    calcularPago(horasTrabajadas) {
+        const tarifaPorHora = this.tipo === 'planta' ? 20000 : 10000;
+        return horasTrabajadas * tarifaPorHora;
+    }
+}
+
+class Empresa {
+    constructor(nombre) {
+        this.nombre = nombre;
+        this.empleados = [];
+    }
+
+    contratarEmpleado(empleado) {
+        this.empleados.push(empleado);
+    }
+
+    calcularNomina(horasTrabajadas) {
+        let nominaTotal = 0;
+        for (let empleado of this.empleados) {
+            const pago = empleado.calcularPago(horasTrabajadas);
+            nominaTotal += pago;
+            console.log(`${empleado.nombre} (${empleado.tipo}): $${pago}`);
+        }
+        return nominaTotal;
+    }
+}
+
+function main() {
+    const miEmpresa = new Empresa("TechnoSoft");
+
+    miEmpresa.contratarEmpleado(new Empleado("Juan", "planta"));
+    miEmpresa.contratarEmpleado(new Empleado("María", "administrativo"));
+    miEmpresa.contratarEmpleado(new Empleado("Carlos", "planta"));
+
+    console.log(`Cálculo de nómina para ${miEmpresa.nombre}`);
+    
+    const horasTrabajadas = 40; // Asumimos una semana laboral de 40 horas
+    console.log(`Horas trabajadas por empleado: ${horasTrabajadas}`);
+    
+    const nominaTotal = miEmpresa.calcularNomina(horasTrabajadas);
+    console.log(`Nómina total: $${nominaTotal}`);
+}
+
+main();
+
+//------------------------------ 53 Ejercicio--------------------//
+
+class Producto {
+    constructor(nombre, precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+}
+
+class Carrito {
+    constructor() {
+        this.productos = [];
+        this.iva = 0.19; // 19% de IVA
+    }
+
+    agregarProducto(producto) {
+        this.productos.push(producto);
+    }
+
+    calcularSubtotal() {
+        return this.productos.reduce((total, producto) => total + producto.precio, 0);
+    }
+
+    calcularIVA() {
+        return this.calcularSubtotal() * this.iva;
+    }
+
+    calcularTotal() {
+        return this.calcularSubtotal() + this.calcularIVA();
+    }
+
+    mostrarResumen() {
+        console.log("Resumen de la compra:");
+        this.productos.forEach((producto, index) => {
+            console.log(`${index + 1}. ${producto.nombre}: $${producto.precio}`);
+        });
+        console.log(`Subtotal: $${this.calcularSubtotal().toFixed(2)}`);
+        console.log(`IVA (${this.iva * 100}%): $${this.calcularIVA().toFixed(2)}`);
+        console.log(`Total: $${this.calcularTotal().toFixed(2)}`);
+    }
+}
+
+function main() {
+    const carrito = new Carrito();
+
+    // Agregamos 5 productos al carrito
+    carrito.agregarProducto(new Producto("Camiseta", 25000));
+    carrito.agregarProducto(new Producto("Pantalón", 50000));
+    carrito.agregarProducto(new Producto("Zapatos", 80000));
+    carrito.agregarProducto(new Producto("Gorra", 15000));
+    carrito.agregarProducto(new Producto("Calcetines", 10000));
+
+    // Mostramos el resumen de la compra
+    carrito.mostrarResumen();
+}
+
+main();
+
+//------------------------------ 54 Ejercicio--------------------//
+
+class Calculadora {
+    restaCondicional(num1, num2) {
+        if (num1 > num2) {
+            return num1 - num2;
+        } else {
+            return "La operación no es posible realizarla";
+        }
+    }
+}
+
+class InterfazUsuario {
+    constructor() {
+        this.calculadora = new Calculadora();
+    }
+
+    solicitarNumeros() {
+        // En un entorno de navegador, usaríamos prompt().
+        // Para este ejemplo, simularemos la entrada del usuario.
+        console.log("Por favor, ingrese dos números:");
+        return [10, 5]; // Simulando entrada del usuario
+    }
+
+    mostrarResultado(resultado) {
+        console.log("Resultado:", resultado);
+    }
+
+    ejecutar() {
+        const [num1, num2] = this.solicitarNumeros();
+        console.log(`Números ingresados: ${num1} y ${num2}`);
+        
+        const resultado = this.calculadora.restaCondicional(num1, num2);
+        this.mostrarResultado(resultado);
+    }
+}
+
+// Función principal
+function main() {
+    const interfaz = new InterfazUsuario();
+    interfaz.ejecutar();
+}
+
+// Ejecutar el programa
+main();
+
+//------------------------------ 55 Ejercicio--------------------//
+
+class Cliente {
+    constructor(nombre, tipoMembresia) {
+        this.nombre = nombre;
+        this.tipoMembresia = tipoMembresia.toUpperCase();
+    }
+}
+
+class TiendaHelados {
+    constructor() {
+        this.descuentos = {
+            'A': 0.10,
+            'B': 0.15,
+            'C': 0.20
+        };
+    }
+
+    calcularDescuento(cliente, precioCompra) {
+        if (this.descuentos.hasOwnProperty(cliente.tipoMembresia)) {
+            const porcentajeDescuento = this.descuentos[cliente.tipoMembresia];
+            const descuento = precioCompra * porcentajeDescuento;
+            const precioFinal = precioCompra - descuento;
+            
+            return {
+                descuento: descuento,
+                precioFinal: precioFinal
+            };
+        } else {
+            return {
+                descuento: 0,
+                precioFinal: precioCompra
+            };
+        }
+    }
+
+    procesarCompra(cliente, precioCompra) {
+        console.log(`Procesando compra para ${cliente.nombre} (Membresía tipo ${cliente.tipoMembresia})`);
+        console.log(`Precio original: $${precioCompra.toFixed(2)}`);
+
+        const resultado = this.calcularDescuento(cliente, precioCompra);
+
+        console.log(`Descuento aplicado: $${resultado.descuento.toFixed(2)}`);
+        console.log(`Precio final: $${resultado.precioFinal.toFixed(2)}`);
+        console.log('-------------------');
+    }
+}
+
+function main() {
+    const tienda = new TiendaHelados();
+
+    const clientes = [
+        new Cliente("Ana", "A"),
+        new Cliente("Bruno", "B"),
+        new Cliente("Carlos", "C"),
+        new Cliente("Diana", "D")  // Tipo de membresía no existente
+    ];
+
+    const precioHelado = 10000;  // Precio base del helado
+
+    for (let cliente of clientes) {
+        tienda.procesarCompra(cliente, precioHelado);
+    }
+}
+
+main();
+
+//------------------------------ 56 Ejercicio--------------------//
+
+// Clase CuentaBancaria
+class CuentaBancaria {
+    constructor(nombreCliente, saldoInicial) {
+        this.nombreCliente = nombreCliente;
+        this.saldo = saldoInicial;
+    }
+
+    // Método para calcular el interés basado en el saldo
+    calcularInteres() {
+        let tasaInteres = this.saldo < 100000 ? 0.03 : 0.04;
+        let interes = this.saldo * tasaInteres;
+        return interes;
+    }
+
+    // Método para aplicar el interés y mostrar el saldo final
+    aplicarInteres() {
+        let interes = this.calcularInteres();
+        this.saldo += interes;
+        console.log(`Cliente: ${this.nombreCliente}`);
+        console.log(`Saldo inicial: $${this.saldo - interes}`);
+        console.log(`Interés pagado: $${interes}`);
+        console.log(`Saldo final: $${this.saldo}`);
+    }
+}
+
+// Función principal
+function ejecutarSimulacion() {
+    // Crear una instancia de la cuenta bancaria con un saldo inicial
+    const cuenta1 = new CuentaBancaria('Kevin David', 150000);
+    cuenta1.aplicarInteres(); // Aplica el interés y muestra el saldo final
+}
+
+// Ejecutar la simulación
+ejecutarSimulacion();
+
+
+//------------------------------ 57 Ejercicio--------------------//
+
+function asignarCalificacion(puntaje) {
+    if (puntaje >= 9.1 && puntaje <= 10) {
+        return 'A (Excelente)';
+    } else if (puntaje >= 8.1 && puntaje <= 9) {
+        return 'A (Muy bien)';
+    } else if (puntaje >= 7.5 && puntaje <= 8) {
+        return 'A (Bien)';
+    } else {
+        return 'NA (No Aprobado)';
+    }
+}
+
+// Función principal para probar el programa
+function ejecutarCalificacion() {
+    const calificaciones = [9.5, 8.4, 7.8, 6.9, 10]; // Ejemplos de puntajes
+    calificaciones.forEach(puntaje => {
+        console.log(`Puntaje: ${puntaje} - Calificación: ${asignarCalificacion(puntaje)}`);
+    });
+}
+
+// Ejecutar la simulación
+ejecutarCalificacion();
+
+
+
+
+//------------------------------ 58 Ejercicio--------------------//
+
+function obtenerSignoZodiacal(mes, dia) {
+    if ((mes === 'enero' && dia <= 19) || (mes === 'diciembre' && dia >= 22)) {
+        return 'Capricornio';
+    } else if ((mes === 'enero' && dia >= 20) || (mes === 'febrero' && dia <= 18)) {
+        return 'Acuario';
+    } else if ((mes === 'febrero' && dia >= 19) || (mes === 'marzo' && dia <= 20)) {
+        return 'Piscis';
+    } else if ((mes === 'marzo' && dia >= 21) || (mes === 'abril' && dia <= 19)) {
+        return 'Aries';
+    } else if ((mes === 'abril' && dia >= 20) || (mes === 'mayo' && dia <= 20)) {
+        return 'Tauro';
+    } else if ((mes === 'mayo' && dia >= 21) || (mes === 'junio' && dia <= 20)) {
+        return 'Géminis';
+    } else if ((mes === 'junio' && dia >= 21) || (mes === 'julio' && dia <= 22)) {
+        return 'Cáncer';
+    } else if ((mes === 'julio' && dia >= 23) || (mes === 'agosto' && dia <= 22)) {
+        return 'Leo';
+    } else if ((mes === 'agosto' && dia >= 23) || (mes === 'septiembre' && dia <= 22)) {
+        return 'Virgo';
+    } else if ((mes === 'septiembre' && dia >= 23) || (mes === 'octubre' && dia <= 22)) {
+        return 'Libra';
+    } else if ((mes === 'octubre' && dia >= 23) || (mes === 'noviembre' && dia <= 21)) {
+        return 'Escorpio';
+    } else if ((mes === 'noviembre' && dia >= 22) || (mes === 'diciembre' && dia <= 21)) {
+        return 'Sagitario';
+    } else {
+        return 'Fecha inválida';
+    }
+}
+
+// Probar el programa con ejemplo
+console.log(obtenerSignoZodiacal('marzo', 15)); // Piscis
+console.log(obtenerSignoZodiacal('julio', 25)); // Leo
+console.log(obtenerSignoZodiacal('noviembre', 10)); // Escorpio
+
+
+//------------------------------ 59 Ejercicio--------------------//
+
+// Función para verificar si el postulante cumple los requisitos
+function esAptoParaBasquetbol(edad, estatura, peso) {
+    if (edad <= 19 && estatura > 175 && peso >= 75 && peso <= 80) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Función para probar varios postulantes
+function seleccionarJugadores() {
+    const postulantes = [
+        { nombre: 'Kevin', edad: 18, estatura: 180, peso: 78 },
+        { nombre: 'David', edad: 20, estatura: 178, peso: 79 },
+        { nombre: 'Luis', edad: 19, estatura: 176, peso: 77 },
+        { nombre: 'Pedro', edad: 17, estatura: 181, peso: 80 }
+    ];
+
+    postulantes.forEach(postulante => {
+        if (esAptoParaBasquetbol(postulante.edad, postulante.estatura, postulante.peso)) {
+            console.log(`${postulante.nombre} es apto para el equipo de baloncesto.`);
+        } else {
+            console.log(`${postulante.nombre} no cumple con los requisitos.`);
+        }
+    });
+}
+
+// Ejecutar la selección de jugadores
+seleccionarJugadores();
+
+
+//------------------------------ 60 Ejercicio--------------------//
+
+function calcularPago(cursos) {
+    const costoPorCurso = cursos <= 6 ? 2000000 : 1200000;
+    return cursos * costoPorCurso;
+}
+
+// Función para probar el cálculo
+function ejecutarPago() {
+    const cursos = parseInt(prompt('Ingrese la cantidad de cursos que lleva el alumno:'));
+
+    if (cursos > 0) {
+        console.log(`El total a pagar por ${cursos} curso(s) es: $${calcularPago(cursos)}`);
+    } else {
+        console.log('Ingrese un número válido de cursos.');
+    }
+}
+
+// Ejecutar la simulación de pago
+ejecutarPago();
+
+//------------------------------ 61 Ejercicio--------------------//
+
+function procesarNotas(notas) {
+    let notaAlta = Math.max(...notas);
+    let notaBaja = Math.min(...notas);
+    let countMaxima = 0, countA = 0, countB = 0, countC = 0, countD = 0;
+
+    // Clasificar las notas
+    notas.forEach(nota => {
+        if (nota === 100) {
+            countMaxima++;
+        } else if (nota >= 90) {
+            countA++;
+        } else if (nota >= 80) {
+            countB++;
+        } else if (nota >= 70) {
+            countC++;
+        } else if (nota >= 60) {
+            countD++;
+        }
+    });
+
+    // Mostrar resultados
+    console.log(`Nota más alta: ${notaAlta}`);
+    console.log(`Nota más baja: ${notaBaja}`);
+    console.log(`Alumnos con la nota máxima (100): ${countMaxima}`);
+    console.log(`Alumnos con calificación 'a' (90-99): ${countA}`);
+    console.log(`Alumnos con calificación 'b' (80-89): ${countB}`);
+    console.log(`Alumnos con calificación 'c' (70-79): ${countC}`);
+    console.log(`Alumnos con calificación 'd' (60-69): ${countD}`);
+}
+
+// Función principal para ingresar las notas
+function ejecutarPrograma() {
+    let notas = [];
+    let cantidad = parseInt(prompt("¿Cuántas notas vas a ingresar?"));
+    
+    for (let i = 0; i < cantidad; i++) {
+        let nota = parseInt(prompt(`Ingresa la nota del alumno ${i + 1} (1-100):`));
+        
+        // Validar que la nota esté en el rango correcto
+        if (nota >= 1 && nota <= 100) {
+            notas.push(nota);
+        } else {
+            console.log('Nota inválida, ingrese un número entre 1 y 100.');
+            i--; // Repetir la entrada en caso de nota inválida
+        }
+    }
+
+    // Procesar las notas ingresadas
+    procesarNotas(notas);
+}
+
+// Ejecutar el programa
+ejecutarPrograma();
+
+
+//------------------------------ 62 Ejercicio--------------------//
+
+function mostrarPalabra() {
+    const palabra = prompt('Ingrese una palabra:');
+
+    for (let i = 0; i < 10; i++) {
+        console.log(`${i + 1}: ${palabra}`);
+    }
+}
+
+// Ejecutar el programa
+mostrarPalabra();
+
+
+//------------------------------ 63 Ejercicio--------------------//
+
+function mostrarAniosCumplidos() {
+    const edad = parseInt(prompt('Ingrese su edad:'));
+
+    // Validar que la edad sea un número positivo
+    if (edad > 0) {
+        for (let i = 1; i <= edad; i++) {
+            console.log(`Año ${i}`);
+        }
+    } else {
+        console.log('Por favor, ingrese una edad válida.');
+    }
+}
+
+// Ejecutar el programa
+mostrarAniosCumplidos();
+
+
+//------------------------------ 64 Ejercicio--------------------//
+
+function mostrarImpares() {
+    const numero = parseInt(prompt('Ingrese un número entero positivo:'));
+
+    // Validar que el número sea positivo
+    if (numero > 0) {
+        let impares = [];
+
+        for (let i = 1; i <= numero; i += 2) {
+            impares.push(i);
+        }
+
+        console.log(`Números impares desde 1 hasta ${numero}: ${impares.join(', ')}`);
+    } else {
+        console.log('Por favor, ingrese un número válido.');
+    }
+}
+
+// Ejecutar el programa
+mostrarImpares();
+
+
+//------------------------------ 65 Ejercicio--------------------//
+
+function cuentaAtras() {
+    const numero = parseInt(prompt('Ingrese un número entero positivo:'));
+
+    // Validar que el número sea positivo
+    if (numero > 0) {
+        let cuenta = [];
+
+        for (let i = numero; i >= 0; i--) {
+            cuenta.push(i);
+        }
+
+        console.log(`Cuenta atrás desde ${numero} hasta 0: ${cuenta.join(', ')}`);
+    } else {
+        console.log('Por favor, ingrese un número válido.');
+    }
+}
+
+// Ejecutar el programa
+cuentaAtras();
+
+
+//------------------------------ 66 Ejercicio--------------------//
+
+function calcularInversion() {
+    const cantidadInvertir = parseFloat(prompt('Ingrese la cantidad a invertir:'));
+    const interesAnual = parseFloat(prompt('Ingrese el interés anual (en %):'));
+    const años = parseInt(prompt('Ingrese el número de años:'));
+
+    // Validar las entradas
+    if (cantidadInvertir > 0 && interesAnual > 0 && años > 0) {
+        let capital = cantidadInvertir;
+
+        console.log(`Capital obtenido cada año:`);
+        
+        for (let i = 1; i <= años; i++) {
+            capital += capital * (interesAnual / 100); // Calcular el capital acumulado
+            console.log(`Año ${i}: $${capital.toFixed(2)}`);
+        }
+    } else {
+        console.log('Por favor, ingrese valores válidos.');
+    }
+}
+
+// Ejecutar el programa
+calcularInversion();
+
+
+//------------------------------ 67 Ejercicio--------------------//
+
+function dibujarTriangulo() {
+    const altura = parseInt(prompt('Ingrese un número entero para la altura del triángulo:'));
+
+    // Validar que la altura sea un número entero positivo
+    if (altura > 0) {
+        for (let i = 1; i <= altura; i++) {
+            console.log('* '.repeat(i).trim());
+        }
+    } else {
+        console.log('Por favor, ingrese un número entero positivo.');
+    }
+}
+
+// Ejecutar el programa
+dibujarTriangulo();
+
+
+//------------------------------ 68 Ejercicio--------------------//
+
+function mostrarTablasMultiplicar() {
+    for (let i = 1; i <= 10; i++) {
+        console.log(`Tabla de multiplicar del ${i}:`);
+        for (let j = 1; j <= 10; j++) {
+            console.log(`${i} x ${j} = ${i * j}`);
+        }
+        console.log(''); // Línea en blanco entre tablas
+    }
+}
+
+// Ejecutar el programa
+mostrarTablasMultiplicar();
+
+
+//------------------------------ 69 Ejercicio--------------------//
+
+function dibujarTrianguloRectangulo() {
+    const altura = parseInt(prompt('Ingrese un número entero para la altura del triángulo:'));
+
+    // Validar que la altura sea un número entero positivo
+    if (altura > 0) {
+        for (let i = 1; i <= altura; i++) {
+            let linea = ''; // Variable para construir la línea
+            for (let j = 1; j <= i; j++) {
+                linea += '* '; // Agregar un asterisco y un espacio
+            }
+            console.log(linea.trim()); // Mostrar la línea en la consola
+        }
+    } else {
+        console.log('Por favor, ingrese un número entero positivo.');
+    }
+}
+
+// Ejecutar el programa
+dibujarTrianguloRectangulo();
+
+
+//------------------------------ 70 Ejercicio--------------------//
+
+
+function verificarContrasena() {
+    const contrasenaCorrecta = 'contraseña'; // Almacena la contraseña correcta
+    let contrasenaIngresada = '';
+
+    // Preguntar al usuario hasta que introduzca la contraseña correcta
+    while (contrasenaIngresada !== contrasenaCorrecta) {
+        contrasenaIngresada = prompt('Por favor, introduzca la contraseña:');
+        if (contrasenaIngresada === contrasenaCorrecta) {
+            console.log('Contraseña correcta. Acceso concedido.');
+        } else {
+            console.log('Contraseña incorrecta. Inténtelo de nuevo.');
+        }
+    }
+}
+
+// Ejecutar el programa
+verificarContrasena();
+
+
+//------------------------------ 71 Ejercicio--------------------//
+
+function esNumeroPrimo() {
+    const numero = parseInt(prompt('Ingrese un número entero:'));
+
+    // Validar que el número sea un entero positivo
+    if (numero < 2) {
+        console.log(`${numero} no es un número primo.`);
+        return;
+    }
+
+    let esPrimo = true;
+
+    // Comprobar si el número es primo
+    for (let i = 2; i <= Math.sqrt(numero); i++) {
+        if (numero % i === 0) {
+            esPrimo = false; // No es primo si tiene un divisor
+            break;
+        }
+    }
+
+    // Mostrar el resultado
+    if (esPrimo) {
+        console.log(`${numero} es un número primo.`);
+    } else {
+        console.log(`${numero} no es un número primo.`);
+    }
+}
+
+// Ejecutar el programa
+esNumeroPrimo();
+
+
+//------------------------------ 72 Ejercicio--------------------//
+
+function mostrarLetrasAlReves() {
+    const palabra = prompt('Ingrese una palabra:');
+
+    // Validar que se haya ingresado una palabra
+    if (palabra) {
+        // Iterar desde la última letra hasta la primera
+        for (let i = palabra.length - 1; i >= 0; i--) {
+            console.log(palabra[i]); // Mostrar cada letra
+        }
+    } else {
+        console.log('Por favor, ingrese una palabra válida.');
+    }
+}
+
+// Ejecutar el programa
+mostrarLetrasAlReves();
+
+
+//------------------------------ 73 Ejercicio--------------------//
+
+function contarLetras() {
+    const frase = prompt('Ingrese una frase:');
+    const letra = prompt('Ingrese una letra:');
+
+    // Validar que la letra ingresada sea única
+    if (letra.length !== 1) {
+        console.log('Por favor, ingrese solo una letra.');
+        return;
+    }
+
+    let contador = 0;
+
+    // Convertir la frase y la letra a minúsculas para una comparación insensible a mayúsculas
+    const fraseMinuscula = frase.toLowerCase();
+    const letraMinuscula = letra.toLowerCase();
+
+    // Contar las ocurrencias de la letra en la frase
+    for (let i = 0; i < fraseMinuscula.length; i++) {
+        if (fraseMinuscula[i] === letraMinuscula) {
+            contador++;
+        }
+    }
+
+    console.log(`La letra "${letra}" aparece ${contador} veces en la frase.`);
+}
+
+// Ejecutar el programa
+contarLetras();
+
+
+//------------------------------ 74 Ejercicio--------------------//
+
+
+function ecoDeUsuario() {
+    let entrada;
+
+    console.log('Escribe "salir" para terminar el programa.');
+
+    // Bucle que continua hasta que el usuario escriba "salir"
+    do {
+        entrada = prompt('Introduce algo:');
+        
+        // Mostrar el eco de la entrada
+        if (entrada !== null && entrada.toLowerCase() !== 'salir') {
+            console.log(entrada);
+        }
+    } while (entrada !== null && entrada.toLowerCase() !== 'salir');
+
+    console.log('Programa terminado.');
+}
+
+// Ejecutar el programa
+ecoDeUsuario();
+
+
+
+
