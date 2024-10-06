@@ -492,77 +492,10 @@ console.log(comprobarFortalezaContrasena(contrasena4));
 
 
 
-//------------------------------ 34 Ejercicio--------------------//
-// Generar el algoritmo que dé como resultado el tiempo estimado para el llenado de un
-// depósito.
-// a. Q = V/t, siendo Q (caudal), V (volumen) y t (tiempo).
-// b. Volumen = PI *(radio^2)* H (altura del depósito).
-// El tiempo se encuentra en minutos. Normalmente se mide el volumen en litros y el tiempo
-// en segundos.
 
 
-const PI = 3.1416;
 
 
-function calcularVolumenDeposito(radio, altura) {
-    
-    const volumen = PI * Math.pow(radio, 2) * altura * 1000; 
-    return volumen;
-}
-
-
-function calcularTiempoLlenado(volumen, caudal) {
- 
-    const tiempoEnSegundos = volumen / caudal;
-  
-    const tiempoEnMinutos = tiempoEnSegundos / 60;
-    return tiempoEnMinutos;
-}
-
-
-const radioDeposito = 2;  
-const alturaDeposito = 5;
-const caudal = 10;       
-
-
-const volumenDeposito = calcularVolumenDeposito(radioDeposito, alturaDeposito);
-
-
-const tiempoLlenado = calcularTiempoLlenado(volumenDeposito, caudal);
-
-
-console.log(`Volumen del depósito: ${volumenDeposito.toFixed(2)} litros`);
-console.log(`Tiempo estimado para llenar el depósito: ${tiempoLlenado.toFixed(2)} minutos`);
-
-
-//------------------------------ 35 Ejercicio--------------------//
-// Un jefe de obra con el dinero que tiene compra cinco juegos de llaves hexagonales cada
-// uno por $11500. Una bomba en $1168000 y tres cajas de pernos cada uno por $87000.
-// Después de pagar le sobran $91000. ¿Cuánto dinero tenía?
-
-
-const precioLlaveHexagonal = 11500;
-const precioBomba = 1168000;        
-const precioCajaPernos = 87000;     
-
-
-const cantidadLlavesHexagonales = 5; 
-const cantidadBombas = 1;             
-const cantidadCajasPernos = 3;       
-
-
-const totalLlavesHexagonales = precioLlaveHexagonal * cantidadLlavesHexagonales;
-const totalBombas = precioBomba * cantidadBombas;
-const totalCajasPernos = precioCajaPernos * cantidadCajasPernos;
-
-
-const totalCompra = totalLlavesHexagonales + totalBombas + totalCajasPernos;
-
-
-console.log(`Total por los juegos de llaves hexagonales: $${totalLlavesHexagonales}`);
-console.log(`Total por la bomba: $${totalBombas}`);
-console.log(`Total por las cajas de pernos: $${totalCajasPernos}`);
-console.log(`\nTotal de la compra: $${totalCompra}`);
 
 //------------------------------ 36 Ejercicio--------------------//
 // En el programa de cocina de “Doña Anita” han dado la receta para la preparación de
