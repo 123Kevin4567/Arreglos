@@ -497,231 +497,34 @@ console.log(comprobarFortalezaContrasena(contrasena4));
 
 
 
-//------------------------------ 36 Ejercicio--------------------//
-// En el programa de cocina de “Doña Anita” han dado la receta para la preparación de
-// bizcocho especial de chocolate. Por cada 100 gramos de harina hay que añadir 10 gramos
-// de cacao y un puñado de nueces. Si quiero prepararlos con 20 gramos de chocolate. ¿La
-// cantidad de gramos de harina para hacer el bizcocho es?
+/
 
 
-const cacaoPorCada100GrHarina = 10; 
-const harinaOriginal = 100;  
 
 
-const cacaoDeseado = 20; 
 
 
-const harinaNecesaria = (cacaoDeseado * harinaOriginal) / cacaoPorCada100GrHarina;
 
 
-console.log(`La cantidad de harina necesaria para ${cacaoDeseado} gramos de cacao es: ${harinaNecesaria} gramos.`);
 
 
 
 
-//------------------------------ 37 Ejercicio--------------------//
-// Un camión transporta 25 cajas de repuestos de carros. Si cada caja pesa 748 Kg ¿cuántos
-// Kg transporta?
 
 
-const numeroCajas = 25;
-const pesoPorCaja = 748; 
 
 
-const pesoTotal = numeroCajas * pesoPorCaja;
 
 
-console.log(`El camión transporta un total de ${pesoTotal} Kg.`);
 
 
-//------------------------------ 38 Ejercicio--------------------//
-// Tres estudiantes reunieron tapas de gaseosas para repartirlas y venderlas al final del año.
-// Martín toma 2/3 del total, Jairo un cuarto del total, y Lorena se queda con el resto. ¿Qué
-// parte le corresponde a Lorena?
 
 
 
-const parteMartin = 2 / 3; 
-const parteJairo = 1 / 4;   
 
 
-const denominadorComun = 12; 
-const parteMartin12 = (parteMartin * denominadorComun) / 1; 
-const parteJairo12 = (parteJairo * denominadorComun) / 1;
 
 
-const parteTotalEstudiantes = (parteMartin12 + parteJairo12) / denominadorComun;
-
-const parteLorena = 1 - parteTotalEstudiantes; 
-
-
-console.log(`A Lorena le corresponde ${parteLorena.toFixed(2)} del total de tapas.`);
-
-
-//------------------------------ 39 Ejercicio--------------------//
-// Pinturas “La brocha gorda” requiere determinar cuánto cobrar por trabajos de pintura
-// Considere que se cobra por m2 y realice el código que representen el algoritmo que le
-// permita ir generando presupuestos para cada cliente.
-
-
-
-const costoPorMetroCuadrado = 20;
-
-
-function calcularPresupuesto(metrosCuadrados) {
-    const presupuestoTotal = metrosCuadrados * costoPorMetroCuadrado;
-    return presupuestoTotal;
-}
-
-
-const metrosCuadradosA pintar = 50;
-
-
-const presupuesto = calcularPresupuesto(metrosCuadradosAPintar);
-
-console.log(`El presupuesto total para pintar ${metrosCuadradosAPintar} m2 es: $${presupuesto}`);
-
-
-//------------------------------ 40 Ejercicio--------------------//
-// Una empresa que contrata personal requiere determinar la edad de las personas que
-// solicitan trabajo, pero cuando se les realiza la entrevista sólo se les pregunta el año en que
-// nacieron. Realice el código que representen el algoritmo para solucionar este problema
-
-
-const añoActual = new Date().getFullYear();
-
-
-function calcularEdad(añoNacimiento) {
-    const edad = añoActual - añoNacimiento;
-    return edad;
-}
-
-
-const añoNacimiento = 1990; 
-
-
-const edad = calcularEdad(añoNacimiento);
-
-
-console.log(`La edad de la persona que nació en ${añoNacimiento} es: ${edad} años.`);
-
-
-//------------------------------ 41 Ejercicio--------------------//
-// Ingrese una frase que lo identifique como programador de Software y luego mostrar esta
-// frase invertida.
-
-
-
-function invertirFrase(frase) {
-    return frase.split('').reverse().join('');
-}
-
-
-const frase = "Soy un programador de software"; 
-
-
-const fraseInvertida = invertirFrase(frase);
-
-
-console.log(`La frase invertida es: "${fraseInvertida}"`);
-
-
-//------------------------------ 42 Ejercicio--------------------//
-// Una papelería vende libros a $10.000, cuadernos $ 7.550, y lapiceros a $5.550. Calcular el
-// monto total de la venta, según la cantidad de artículos solicitados durante el día.
-
-
-
-const precioLibro = 10000;    
-const precioCuaderno = 7550;  
-const precioLapicero = 5550;   
-
-
-function calcularTotal(cantidadLibros, cantidadCuadernos, cantidadLapiceros) {
-    const totalLibros = cantidadLibros * precioLibro;
-    const totalCuadernos = cantidadCuadernos * precioCuaderno;
-    const totalLapiceros = cantidadLapiceros * precioLapicero;
-    
-    const montoTotal = totalLibros + totalCuadernos + totalLapiceros;
-    return montoTotal;
-}
-
-
-const cantidadLibros = 3;    
-const cantidadCuadernos = 5;  
-const cantidadLapiceros = 10;  
-
-
-const montoTotalVenta = calcularTotal(cantidadLibros, cantidadCuadernos, cantidadLapiceros);
-
-
-console.log(`El monto total de la venta es: $${montoTotalVenta}`);
-
-//------------------------------ 43 Ejercicio--------------------//
-// Escriba una expresión regular que reconozca las cadenas de doble comillas. Debe permitir
-// la presencia de comillas y caracteres escapados.
-
-//BAse:
-const regex = /"((?:[^"\\]|\\.)*?)"/g;
-
-
-const texto = `"Este es un ejemplo de "cadena con "comillas" escapadas\" y otros caracteres \\n."`;
-const regex = /"((?:[^"\\]|\\.)*?)"/g;
-
-let coincidencias;
-while ((coincidencias = regex.exec(texto)) !== null) {
-    console.log(`Cadena encontrada: ${coincidencias[0]}`);
-}
-
-//------------------------------ 44 Ejercicio--------------------//
-// Realice el siguiente algoritmo para convertir pesos a dolores y a euros, utilizando como
-// constante el valor de una moneda
-
-const valorDolar = 4000; 
-const valorEuro = 4500;  
-
-
-function convertirMoneda(pesos) {
-    const dolares = pesos / valorDolar; 
-    const euros = pesos / valorEuro; 
-    return { dolares, euros };
-}
-
-
-const pesos = 20000; 
-
-
-const { dolares, euros } = convertirMoneda(pesos);
-
-
-console.log(`La cantidad de ${pesos} pesos es equivalente a:`);
-console.log(`Dólares: $${dolares.toFixed(2)}`);
-console.log(`Euros: €${euros.toFixed(2)}`);
-
-
-
-//------------------------------ 45 Ejercicio--------------------//
-// Función para verificar si un número es positivo y menor que 100
-function verificarNumero(numero) {
-    if (numero > 0 && numero < 100) {
-        return true;  // El número es positivo y menor que 100
-    } else {
-        return false; // El número no cumple con las condiciones
-    }
-}
-
-// Simulación de entrada del usuario
-const numero = 45; // Ejemplo: el usuario ingresó 45
-
-// Verificar el número
-const resultado = verificarNumero(numero);
-
-// Mostrar el resultado
-if (resultado) {
-    console.log(`El número ${numero} es positivo y menor que 100.`);
-} else {
-    console.log(`El número ${numero} NO es positivo o es mayor o igual que 100.`);
-}
 
 
 //------------------------------ 46 Ejercicio--------------------//
@@ -753,39 +556,7 @@ const mayor = mayorDeTres(num1, num2, num3);
 console.log(`El mayor de los tres números (${num1}, ${num2}, ${num3}) es: ${mayor}`);
 
 
-//------------------------------ 47 Ejercicio--------------------//
 
-function compararValores(a, b, c) {
-    if (a === b && b === c) {
-        console.log("Los tres valores son iguales.");
-    } else if (a === b) {
-        console.log("A y B son iguales, C es diferente.");
-    } else if (b === c) {
-        console.log("B y C son iguales, A es diferente.");
-    } else {
-        if (a > b) {
-            if (a > c) {
-                console.log(`A es el mayor, C es el menor.`);
-            } else {
-                console.log(`C es el mayor, A es el menor.`);
-            }
-        } else {
-            if (b > c) {
-                console.log(`B es el mayor, C es el menor.`);
-            } else {
-                console.log(`C es el mayor, B es el menor.`);
-            }
-        }
-    }
-}
-
-// Simulación de entrada del usuario
-const a = 10; // Ejemplo: el usuario ingresó 10
-const b = 20; // Ejemplo: el usuario ingresó 20
-const c = 10; // Ejemplo: el usuario ingresó 10
-
-// Comparar los valores
-compararValores(a, b, c);
 
 
 //------------------------------ 48 Ejercicio--------------------//
@@ -826,46 +597,15 @@ function calcularArea() {
 calcularArea();
 
 
-//------------------------------ 49 Ejercicio--------------------//
-
-// Función para calcular el área del rectángulo
-function areaRectangulo(base, altura) {
-    return base * altura;
-}
-
-// Función principal
-function calcularAreaRectangulo() {
-    // Solicitar la base y la altura al usuario
-    const base = parseFloat(prompt("Ingrese la base del rectángulo:"));
-    const altura = parseFloat(prompt("Ingrese la altura del rectángulo:"));
-
-    // Verificar si ambos lados son positivos
-    if (base > 0 && altura > 0) {
-        const area = areaRectangulo(base, altura);
-        console.log(`El área del rectángulo es: ${area.toFixed(2)} unidades cuadradas.`);
-    } else {
-        console.log("Error: La base y la altura deben ser números positivos.");
-    }
-}
-
-// Llamar a la función principal
-calcularAreaRectangulo();
-
-//------------------------------ 50 Ejercicio--------------------//
 
 
-let temperatura = 105; 
-let presion = 250;
 
-
-if (presion > 200 || temperatura > 100) {
-    console.log("Alarma");
-} else {
-    console.log("Todo en orden");
-}
 
 
 //------------------------------ 51 Ejercicio--------------------//
+// Calcular todos los pagos hechos de un restaurante y que si el consumo ingresado excede
+// los $130.000 el descuento será del 15%, de lo contrario no hay descuento.
+
 
 class Restaurante {
     constructor(nombre) {
@@ -909,6 +649,10 @@ main();
 
 
 //------------------------------ 52 Ejercicio--------------------//
+// En cierta empresa se les paga a sus trabajadores de la siguiente forma: si el empleado es
+// de planta, la hora trabajada se le paga a $20000, si el empleado es administrativo, la hora
+// trabajada se le paga a $10000. Para calcular su pago es necesario conocer el total de
+// horas trabajadas.
 
 class Empleado {
     constructor(nombre, tipo) {
@@ -962,6 +706,8 @@ function main() {
 main();
 
 //------------------------------ 53 Ejercicio--------------------//
+// Calcular el valor total del valor de 5 productos, el IVA y el subtotal, visualizar los resultados
+// de: Iva, Subtotal y Total de la compra de los artículos.
 
 class Producto {
     constructor(nombre, precio) {
@@ -1019,53 +765,13 @@ function main() {
 
 main();
 
-//------------------------------ 54 Ejercicio--------------------//
 
-class Calculadora {
-    restaCondicional(num1, num2) {
-        if (num1 > num2) {
-            return num1 - num2;
-        } else {
-            return "La operación no es posible realizarla";
-        }
-    }
-}
-
-class InterfazUsuario {
-    constructor() {
-        this.calculadora = new Calculadora();
-    }
-
-    solicitarNumeros() {
-        // En un entorno de navegador, usaríamos prompt().
-        // Para este ejemplo, simularemos la entrada del usuario.
-        console.log("Por favor, ingrese dos números:");
-        return [10, 5]; // Simulando entrada del usuario
-    }
-
-    mostrarResultado(resultado) {
-        console.log("Resultado:", resultado);
-    }
-
-    ejecutar() {
-        const [num1, num2] = this.solicitarNumeros();
-        console.log(`Números ingresados: ${num1} y ${num2}`);
-        
-        const resultado = this.calculadora.restaCondicional(num1, num2);
-        this.mostrarResultado(resultado);
-    }
-}
-
-// Función principal
-function main() {
-    const interfaz = new InterfazUsuario();
-    interfaz.ejecutar();
-}
-
-// Ejecutar el programa
-main();
 
 //------------------------------ 55 Ejercicio--------------------//
+// En una tienda de HELADO da un descuento por compra a sus clientes con membresía
+// dependiendo de su tipo, sólo existen tres tipos de membresía, tipo A, tipo B y tipo C. Los
+// descuentos son los siguientes: Tipo A 10% de descuento Tipo B 15% de descuento Tipo C
+// 20% de descuento.
 
 class Cliente {
     constructor(nombre, tipoMembresia) {
@@ -1133,6 +839,9 @@ function main() {
 main();
 
 //------------------------------ 56 Ejercicio--------------------//
+// Un banco paga intereses a los depósitos dependiendo del saldo. Si el saldo es menor a
+// $100.000 se paga un interés anual de 3%, pero si su saldo es mayor a $100.000 se paga
+// un interés anual de 4%. Al final mostrar el saldo final y el interés pagado
 
 // Clase CuentaBancaria
 class CuentaBancaria {
@@ -1170,35 +879,14 @@ function ejecutarSimulacion() {
 ejecutarSimulacion();
 
 
-//------------------------------ 57 Ejercicio--------------------//
 
-function asignarCalificacion(puntaje) {
-    if (puntaje >= 9.1 && puntaje <= 10) {
-        return 'A (Excelente)';
-    } else if (puntaje >= 8.1 && puntaje <= 9) {
-        return 'A (Muy bien)';
-    } else if (puntaje >= 7.5 && puntaje <= 8) {
-        return 'A (Bien)';
-    } else {
-        return 'NA (No Aprobado)';
-    }
-}
-
-// Función principal para probar el programa
-function ejecutarCalificacion() {
-    const calificaciones = [9.5, 8.4, 7.8, 6.9, 10]; // Ejemplos de puntajes
-    calificaciones.forEach(puntaje => {
-        console.log(`Puntaje: ${puntaje} - Calificación: ${asignarCalificacion(puntaje)}`);
-    });
-}
-
-// Ejecutar la simulación
-ejecutarCalificacion();
 
 
 
 
 //------------------------------ 58 Ejercicio--------------------//
+// Se desea realizar una aplicación que ingrese el nombre del mes y mostrar que signo
+// zodiacal pertenece, para ello usar if_else anidados.
 
 function obtenerSignoZodiacal(mes, dia) {
     if ((mes === 'enero' && dia <= 19) || (mes === 'diciembre' && dia >= 22)) {
@@ -1237,6 +925,9 @@ console.log(obtenerSignoZodiacal('noviembre', 10)); // Escorpio
 
 
 //------------------------------ 59 Ejercicio--------------------//
+// En un colegio, se necesita hacer una selección de basquetbol que represente al colegio,
+// para lo cual es requisito indispensable que los postulantes sean menores o iguales a 19
+// años, con una estatura de más de 175 cm y el peso tiene que estar entre los 80 kg y 75.
 
 // Función para verificar si el postulante cumple los requisitos
 function esAptoParaBasquetbol(edad, estatura, peso) {
@@ -1269,28 +960,16 @@ function seleccionarJugadores() {
 seleccionarJugadores();
 
 
-//------------------------------ 60 Ejercicio--------------------//
 
-function calcularPago(cursos) {
-    const costoPorCurso = cursos <= 6 ? 2000000 : 1200000;
-    return cursos * costoPorCurso;
-}
-
-// Función para probar el cálculo
-function ejecutarPago() {
-    const cursos = parseInt(prompt('Ingrese la cantidad de cursos que lleva el alumno:'));
-
-    if (cursos > 0) {
-        console.log(`El total a pagar por ${cursos} curso(s) es: $${calcularPago(cursos)}`);
-    } else {
-        console.log('Ingrese un número válido de cursos.');
-    }
-}
-
-// Ejecutar la simulación de pago
-ejecutarPago();
 
 //------------------------------ 61 Ejercicio--------------------//
+// Hacer un programa que permita ingresar n Notas de alumnos (100 – 1), y que imprima cual
+// fue la nota alta, la nota baja y cuantos alumnos obtuvieron la máxima nota de 100, cuantos
+// obtuvieron las siguientes calificaciones:
+// a. «a» = menor que 100 y mayor igual que 90
+// b. «b» = menor que 90 y mayor igual que 80
+// c. «c» = menor que 80 y mayor igual que 70
+// d. «d» = menor que 70 y mayor igual que 60
 
 function procesarNotas(notas) {
     let notaAlta = Math.max(...notas);
@@ -1347,21 +1026,12 @@ function ejecutarPrograma() {
 ejecutarPrograma();
 
 
-//------------------------------ 62 Ejercicio--------------------//
 
-function mostrarPalabra() {
-    const palabra = prompt('Ingrese una palabra:');
-
-    for (let i = 0; i < 10; i++) {
-        console.log(`${i + 1}: ${palabra}`);
-    }
-}
-
-
-mostrarPalabra();
 
 
 //------------------------------ 63 Ejercicio--------------------//
+// Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los
+// años que ha cumplido (desde 1 hasta su edad).
 
 function mostrarAniosCumplidos() {
     const edad = parseInt(prompt('Ingrese su edad:'));
@@ -1381,6 +1051,8 @@ mostrarAniosCumplidos();
 
 
 //------------------------------ 64 Ejercicio--------------------//
+// Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla
+// todos los números impares desde 1 hasta ese número separados por coma.
 
 function mostrarImpares() {
     const numero = parseInt(prompt('Ingrese un número entero positivo:'));
@@ -1404,6 +1076,8 @@ mostrarImpares();
 
 
 //------------------------------ 65 Ejercicio--------------------//
+// Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla
+// la cuenta atrás desde ese número hasta cero separados por comas.
 
 function cuentaAtras() {
     const numero = parseInt(prompt('Ingrese un número entero positivo:'));
@@ -1427,6 +1101,10 @@ cuentaAtras();
 
 
 //------------------------------ 66 Ejercicio--------------------//
+// Escribir un programa que pregunte al usuario una cantidad a invertir, el interés anual y el
+// número de años, y muestre por pantalla el capital obtenido en la inversión cada año que
+// dura la inversión.
+
 
 function calcularInversion() {
     const cantidadInvertir = parseFloat(prompt('Ingrese la cantidad a invertir:'));
@@ -1453,6 +1131,8 @@ calcularInversion();
 
 
 //------------------------------ 67 Ejercicio--------------------//
+// Escribir un programa que pida al usuario un número entero y muestre por pantalla un
+// triángulo rectángulo como el de más abajo, de altura el número introducido.
 
 function dibujarTriangulo() {
     const altura = parseInt(prompt('Ingrese un número entero para la altura del triángulo:'));
@@ -1472,6 +1152,7 @@ dibujarTriangulo();
 
 
 //------------------------------ 68 Ejercicio--------------------//
+// Escribir un programa que muestre por consola la tabla de multiplicar del 1 al 10
 
 function mostrarTablasMultiplicar() {
     for (let i = 1; i <= 10; i++) {
@@ -1488,6 +1169,8 @@ mostrarTablasMultiplicar();
 
 
 //------------------------------ 69 Ejercicio--------------------//
+// Escribir un programa que pida al usuario un número entero y muestre por consola un
+// triángulo rectángulo como el de más abajo.
 
 function dibujarTrianguloRectangulo() {
     const altura = parseInt(prompt('Ingrese un número entero para la altura del triángulo:'));
@@ -1511,6 +1194,8 @@ dibujarTrianguloRectangulo();
 
 
 //------------------------------ 70 Ejercicio--------------------//
+// Escribir un programa que almacene la cadena de caracteres contraseña en una variable,
+// pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
 
 
 function verificarContrasena() {
@@ -1533,6 +1218,8 @@ verificarContrasena();
 
 
 //------------------------------ 71 Ejercicio--------------------//
+// Escribir un programa que pida al usuario un número entero y muestre por pantalla si es un
+// número primo o no.
 
 function esNumeroPrimo() {
     const numero = parseInt(prompt('Ingrese un número entero:'));
@@ -1565,6 +1252,8 @@ esNumeroPrimo();
 
 
 //------------------------------ 72 Ejercicio--------------------//
+// Escribir un programa que pida al usuario una palabra y luego muestre por pantalla una a
+// una las letras de la palabra introducida empezando por la última.
 
 function mostrarLetrasAlReves() {
     const palabra = prompt('Ingrese una palabra:');
@@ -1585,6 +1274,8 @@ mostrarLetrasAlReves();
 
 
 //------------------------------ 73 Ejercicio--------------------//
+// Escribir un programa en el que se pregunte al usuario por una frase y una letra, y muestre
+// por pantalla el número de veces que aparece la letra en la frase.
 
 function contarLetras() {
     const frase = prompt('Ingrese una frase:');
@@ -1617,6 +1308,8 @@ contarLetras();
 
 
 //------------------------------ 74 Ejercicio--------------------//
+// Escribir un programa que muestre el eco de todo lo que el usuario introduzca hasta que el
+// usuario escriba “salir” que terminará.
 
 
 function ecoDeUsuario() {
