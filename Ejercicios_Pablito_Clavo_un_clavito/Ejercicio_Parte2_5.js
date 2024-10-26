@@ -1,3 +1,8 @@
+// Crea una función que genere la tabla de multiplicar del número 5, no se debe mostrar 5
+// * 5, nos debe mostrar el resultado para las demás multiplicaciones.
+
+
+
 
 let numero = parseInt(prompt("Escribe el numero a multiplicar"));
 let inicio = parseInt(prompt("Escribe donde quiere iniciar"));

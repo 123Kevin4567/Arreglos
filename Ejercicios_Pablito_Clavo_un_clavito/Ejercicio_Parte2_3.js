@@ -1,3 +1,5 @@
+// • Crea una función que calcule la longitud de una palabra si es corta o si es larga. (palabras
+//   cortas menores de 5 caracteres).
 
 
 let palabra = prompt("Ingrese una palabra");

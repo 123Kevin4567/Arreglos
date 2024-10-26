@@ -5,9 +5,9 @@
 function mostrarLetrasAlReves(palabra) {
     if (palabra) {
         const letrasReves = palabra.split('').reverse().join('');
-        console.log(`La palabra al revés es: ${letrasReves}`);
+        console.log(`La palabra al reves es: ${letrasReves}`);
     } else {
-        console.log('Escribe una palabra válida :/');
+        console.log('Escribe una palabra valida :/');
     }
 }
 

@@ -1,4 +1,5 @@
-
+// Crea una función que reciba dos números como parámetros y devuelva el mayor de
+// ellos.
 
 let a = parseFloat(prompt('Ingrese el numero 1'));
 let b = parseFloat(prompt('Ingrese el numero 2'));
